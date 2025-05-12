@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ระบบเช็คชื่อออนไลน์</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>ระบบเช็คชื่อออนไลน์</h2>
+    <div class="profile-edit">
+      <label>เลขที่: <input type="number" id="userNo" min="1" max="30" value="1"></label>
+      <label>ชื่อ: <input type="text" id="userName" value="ชื่อของคุณ"></label>
+      <button class="btn" onclick="saveProfile()">บันทึกโปรไฟล์</button>
+    </div>
+    <div class="calendar">
+      <label>เลือกวันที่: <input type="date" id="attendanceDate"></label>
+    </div>
+    <div class="summary">
+      <span id="count-present">มา: 0</span> |
+      <span id="count-leave">ลา: 0</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>เลขที่</th>
+          <th>ชื่อ</th>
+          <th>สถานะ</th>
+        </tr>
+      </thead>
+      <tbody id="userTable">
+        <!-- รายชื่อจะถูกสร้างโดย JS -->
+      </tbody>
+    </table>
+    <button class="btn" onclick="saveAttendance()">บันทึกการเช็คชื่อ</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
