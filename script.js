@@ -65,3 +65,36 @@ document.addEventListener('change', function(e) {
 });
 
 renderTable();
+
+function exportToCSV() {
+  const date = document.getElementById('attendanceDate').value  '';
+  // สร้าง header
+  const header = ['no', 'name', 'status', 'date'];
+  // ดึงข้อมูล attendance
+  const attendance = users.map(user => ({
+    no: user.no,
+    name: user.name,
+    status: document.getElementById(status-${user.no}).value,
+    date: date
+  }));
+  // แปลงเป็น CSV string
+  const rows = [
+    header.join(','), // header
+    ...attendance.map(row => [
+      row.no,
+      "${row.name.replace(/"/g, '""')}", // escape "
+      "${row.status.replace(/"/g, '""')}",
+      row.date
+    ].join(','))
+  ];
+  const csvContent = rows.join('\r\n');
+
+  // สร้าง Blob แล้วดาวน์โหลด
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `attendance_${date  'no_date'}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
